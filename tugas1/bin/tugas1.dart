@@ -14,7 +14,7 @@ void main(List<String> arguments) {
         for(int j=angka-i; j>=1; j--){
           stdout.write("$temp");
           temp++;
-          if(temp > angka){
+          if(temp > angka || temp > 9){
             temp = 1;
           }
         }
@@ -36,7 +36,13 @@ void main(List<String> arguments) {
       }
       stdout.writeln();
       counter++;
-      counter2 = counter;
+      if(counter > 9){
+        counter = 1;
+        counter2 = counter;
+      }
+      else{
+        counter2 = counter;
+      }
     }
     //segitiga bawah
     for(int i=angka - 2; i >= 0; i--){
@@ -44,7 +50,13 @@ void main(List<String> arguments) {
         stdout.write("*");
       }
       for(int j=0; j<=i*2;j++){
-        stdout.write("$counter2");
+        if(counter2 > 9){
+          counter2 = 1;
+          stdout.write("$counter2");
+        }
+        else{
+          stdout.write("$counter2");
+        }
       }
       stdout.writeln();
       counter2++;

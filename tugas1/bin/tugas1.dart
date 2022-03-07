@@ -4,27 +4,23 @@ void main(List<String> arguments) {
     stdout.write("Masukkan angka : ");
     String? input = stdin.readLineSync();
     int angka = int.parse(input!);
+    int temp = 1;
     int counter = 1;
     int counter2 = 0;
 
   if(angka % 2 == 0){
-    for(int i=0; i<angka; i++){
-      //segitiga rata kanan
-      for(int j=0; j<=i+angka;j++){
-        stdout.write(" ");
-      }
-      for(int j=0; j<=angka-1-i; j++){
-        stdout.write("*");
-      }
-      stdout.writeln();
-    }
-    //segitiga rata kiri
     for(int i=0;i<angka;i++){
-      for(int j=angka; j<=i;j++){
-        stdout.write(" ");
-      }
-      for(int j=0; j<=angka-1-i; j++){
-        stdout.write("*");
+      for(int j=0;j<2;j++){
+        for(int j=angka-i; j>=1; j--){
+          stdout.write("$temp");
+          temp++;
+          if(temp > angka){
+            temp = 1;
+          }
+        }
+        for(int j=0; j<=i*2-1;j++){
+          stdout.write(" ");
+        }
       }
       stdout.writeln();
     }

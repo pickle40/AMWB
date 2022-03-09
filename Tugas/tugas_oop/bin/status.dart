@@ -3,3 +3,9 @@ class Status{
     return '';
   }
 }
+
+mixin Absensi{
+  void absensi(){
+    print('absensi');
+  }
+}

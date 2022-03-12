@@ -4,4 +4,14 @@ class Universitas{
 
   Universitas(this._namaUniveritas, this._gajiDasar);
 
+  set namaUniversitas(String nama){
+    _namaUniveritas = nama;
+  }
+
+  set gajiDasarUniversitas(int gajiDasar){
+    _gajiDasar = gajiDasar;
+  }
+
+  String get namaUniversitas => this._namaUniveritas!;
+  int get gajiDasarUniversitas => this._gajiDasar;
 }

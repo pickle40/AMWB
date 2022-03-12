@@ -22,4 +22,10 @@ class Staff extends Universitas implements Status{
 
   Staff(String? namaUniveritas, int gajiDasar, String nama, String nis, int jumcuti, int tunjgaji) : super(namaUniveritas, gajiDasar);
 
+  @override
+  String status() {
+    // TODO: implement status
+    return 'Hadir';
+  }
+
 }

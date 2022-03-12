@@ -6,6 +6,6 @@ class Status{
 
 mixin Absensi{
   void absensi(){
-    print('absensi');
+    print('absen');
   }
 }

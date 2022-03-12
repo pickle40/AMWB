@@ -4,6 +4,12 @@ class Status{
   }
 }
 
+class Jenis{
+  String jenis(){
+    return '';
+  }
+}
+
 mixin Absensi{
   void absensi(){
     print('absen');

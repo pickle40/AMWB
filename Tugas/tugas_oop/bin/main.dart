@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'fdosen.dart';
 import 'fmahasiswa.dart';
 import 'funiversitas.dart';
@@ -132,7 +131,10 @@ void main(List<String> arguments) {
       print('Nama: ${dataDosen.namaDosen}');
       print('NIP: ${dataDosen.nipDosen}');
       print('MataKuliah: ${dataDosen.mkAjar}');
-      print('');
+      print('Jumlah SKS diajar: ${dataDosen.sks} SKS');
+      print('Jenis: ${dataDosen.jenis()}');
+      print('Total Gaji yang dimiliki: ${dataDosen.totalGaji()}'); 
+      print('Cek Tunjangan: ${dataDosen.tunjGaji}'); 
       stdout.writeln();
     }
     else{

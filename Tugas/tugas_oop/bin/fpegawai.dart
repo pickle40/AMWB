@@ -8,7 +8,7 @@ class Dosen extends Universitas{
   String? _JenisDosen;
   int _SKS = 0;
 
-  Dosen(String? namaUniveritas, int gajiDasar, String nama, String nip, String mkajar, int sks) : super(namaUniveritas, gajiDasar);
+  Dosen(String? namaUniveritas, int gajiDasar, String? nama, String? nip, String? mkajar, int sks) : super(namaUniveritas, gajiDasar);
 
   set namaDosen(String nama){
     _nama = nama;

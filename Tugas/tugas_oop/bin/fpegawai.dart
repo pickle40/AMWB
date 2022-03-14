@@ -33,6 +33,7 @@ class Staff extends Universitas implements Status{
   int _jumMasuk = 0;
   int _gajiDasar = 0;
   int _totalgaji = 0;
+  bool aktif = true;
 
   Staff(String? namaUniveritas, int gajiDasar, String? nama, String? nis, int jumcuti, int tunjgaji, int jumMasuk) : super(namaUniveritas, gajiDasar){
     _nama = nama;
@@ -45,11 +46,29 @@ class Staff extends Universitas implements Status{
 
   String get namaStaff => this._nama!;
   String get nisStaff => this._NIS!;
+  int get jumMasuk => this._jumMasuk;
 
   @override
   String status() {
     // TODO: implement status
-    return 'Hadir';
+    if(aktif==true){
+      return 'Hadir';
+    }
+    else{
+      return 'Cuti';
+    }
+  }
+
+  String statusStaff(String input){
+    if(input == "Hadir" || input == "hadir"){
+      aktif = true;
+      status();
+    }
+    else if(input == "Cuti" || input == "cuti"){
+      aktif = false;
+      status();
+    }
+    return status();
   }
 
   int totalGaji(){

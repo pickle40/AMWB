@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'funiversitas.dart';
 import 'status.dart';
 

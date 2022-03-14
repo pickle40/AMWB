@@ -23,7 +23,7 @@ void main(List<String> arguments) {
     print('1. Isi Data Mahasiswa');
     print('2. Isi Data Dosen');
     print('3. Isi Data Staff');
-    print('4. Lihat Data Keseluruhan');
+    print('4. Lihat Data Keseluruhan (Pilihan 1-3 harus terisi)');
     stdout.writeln();
     print('Pilih untuk isi Data: ');
     input = stdin.readLineSync();
@@ -67,10 +67,10 @@ void main(List<String> arguments) {
             }
           }    
         }while(IPS > 4.00);
+      dataMahasiswa = Mahasiswa(dataUniversitas.namaUniversitas, namaMahasiswa!, nrpMahasiswa!, jumSKS, IPS);
       print('Masukkan status Mahasiswa [Aktif/Cuti]:');
       input = stdin.readLineSync();
       dataMahasiswa.statusMahasiswa(input);
-      dataMahasiswa = Mahasiswa(dataUniversitas.namaUniversitas, namaMahasiswa!, nrpMahasiswa!, jumSKS, IPS);
       //PRINT
       print('Nama: ${dataMahasiswa.namaMahasiswa}');
       print('NRP: ${dataMahasiswa.nrpMahasiswa}');
@@ -171,11 +171,18 @@ void main(List<String> arguments) {
       print('Masukkan tunjangan gaji Staff:');
       input = stdin.readLineSync();
       tunjGaji = int.parse(input!);
+      dataStaff = Staff(dataUniversitas.namaUniversitas, dataUniversitas.gajiDasarUniversitas, namaStaff!, nisStaff!, jumCuti, tunjGaji, jumHadir);
       print('Masukkan Kehadiran Staff saat ini [Hadir/Cuti]:');
       input = stdin.readLineSync();
-      dataStaff.statusStaff(input);
-      dataStaff = Staff(dataUniversitas.namaUniversitas, dataUniversitas.gajiDasarUniversitas, namaStaff!, nisStaff!, jumCuti, tunjGaji, jumHadir);
+      dataStaff.statusStaff(input!);
       //PRINT
+      print('STAFF');
+      print('Nama: ${dataStaff.namaStaff}');
+      print('NIS: ${dataStaff.nisStaff}');
+      print('Jumlah Hadir: ${dataStaff.jumMasuk} Hari');
+      print('Sisa Cuti sekarang: ${dataStaff.sisaCuti()} kali');
+      print('Total gaji yang dimiliki: Rp. ${dataStaff.totalGaji()}');
+      print('Status Staff saat ini: ${dataStaff.status()}');
       stdout.writeln();
     }
     else if(pilih == 4){
@@ -196,8 +203,14 @@ void main(List<String> arguments) {
       // print('IPK Mahasiswa: ${dataMahasiswa.hasilIPK()}');
       // print('Status Mahasiswa: ${dataMahasiswa.status()}');
       // stdout.writeln();
-      print('STAFF');
-      print('Nama: ${dataStaff.namaStaff}');
+      // print('STAFF');
+      // print('Nama: ${dataStaff.namaStaff}');
+      // print('NIS: ${dataStaff.nisStaff}');
+      // print('Jumlah Hadir: ${dataStaff.jumMasuk} Hari');
+      // print('Sisa Cuti sekarang: ${dataStaff.sisaCuti()} kali');
+      // print('Total gaji yang dimiliki: Rp. ${dataStaff.totalGaji()}');
+      // print('Status Staff saat ini: ${dataStaff.status()}');
+      // stdout.writeln();
     }
     else{
       break;

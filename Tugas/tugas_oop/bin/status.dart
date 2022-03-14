@@ -9,9 +9,3 @@ class Jenis{
     return '';
   }
 }
-
-mixin Absensi{
-  void absensi(){
-    print('absen');
-  }
-}

@@ -11,7 +11,12 @@ class Mahasiswa extends Universitas implements Status{
   double _IPK = 0.00;
   bool aktif = true;
 
-  Mahasiswa(String? namaUniveritas, String nama, String nrp, int sks) : super(namaUniveritas, 0);
+  Mahasiswa(String? namaUniveritas, String nama, String nrp, int sks, double ips) : super(namaUniveritas, 0){
+    _SKS = sks;
+    _nama = nama;
+    _NRP = nrp;
+    _IPS = ips;
+  }
 
   @override
   String status() {
@@ -38,17 +43,7 @@ class Mahasiswa extends Universitas implements Status{
 
   double hasilIPK(){
 
-    return _IPK;
-  }
-
-  set namaMahasiswa(String nama){
-    _nama = nama;
-  }
-  set nrpMahasiswa(String nrp){
-    _NRP = nrp;
-  }
-  set sksMahasiswa(int sks){
-    _SKS = sks;
+    return _IPK = _IPS;
   }
 
   String get namaMahasiswa => this._nama!;

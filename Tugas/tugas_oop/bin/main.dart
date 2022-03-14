@@ -1,12 +1,15 @@
 import 'dart:io';
 import 'fdosen.dart';
 import 'fmahasiswa.dart';
+import 'fpegawai.dart';
 import 'funiversitas.dart';
 
 void main(List<String> arguments) {
   var dataUniversitas;
   var dataMahasiswa;
   var dataDosen;
+  var dataStaff;
+
   String? input;
   print('Masukkan nama universitas:');
   String? namaUniversitas = stdin.readLineSync();
@@ -26,8 +29,11 @@ void main(List<String> arguments) {
     input = stdin.readLineSync();
     int pilih = int.parse(input!);
 
+    //DATA MAHASISWA
     if(pilih == 1){
       int jumSKS;
+      double IPS;
+
       print('Masukkan nama Mahasiswa:');
       String? namaMahasiswa = stdin.readLineSync();
       print('Masukkan NRP Mahasiswa:');
@@ -48,14 +54,35 @@ void main(List<String> arguments) {
             }
           }    
         }while(jumSKS < 2 || jumSKS > 24);
-      dataMahasiswa = Mahasiswa(dataUniversitas.namaUniversitas, namaMahasiswa!, nrpMahasiswa!, jumSKS);
+      do{
+        print('Masukkan IPS Mahasiswa: ');
+        input = stdin.readLineSync();
+        IPS = double.parse(input!);
+          if(IPS < 0){
+            print('Input tidak bisa Negatif!');
+          }
+          else{
+            if(IPS > 4.00){
+              print('IPS tidak bisa lebih dari 4.00!');
+            }
+          }    
+        }while(IPS > 4.00);
       print('Masukkan status Mahasiswa [Aktif/Cuti]:');
       input = stdin.readLineSync();
       dataMahasiswa.statusMahasiswa(input);
+      dataMahasiswa = Mahasiswa(dataUniversitas.namaUniversitas, namaMahasiswa!, nrpMahasiswa!, jumSKS, IPS);
+      //PRINT
+      print('Nama: ${dataMahasiswa.namaMahasiswa}');
+      print('NRP: ${dataMahasiswa.nrpMahasiswa}');
+      print('Jumlah SKS diambil: ${dataMahasiswa.sksMahasiswa} SKS');
+      print('IPK Mahasiswa: ${dataMahasiswa.hasilIPK()}');
+      print('Status Mahasiswa: ${dataMahasiswa.status()}');
       stdout.writeln();
     }
+    //DATA DOSEN
     else if(pilih == 2){
       int jumSKS;
+      int tunjGaji;
       print('Masukkan nama Dosen:');
       String? namaDosen = stdin.readLineSync();
       print('Masukkan NIP Dosen:');
@@ -78,7 +105,6 @@ void main(List<String> arguments) {
         dataDosen = LB(dataUniversitas.namaUniversitas, dataUniversitas.gajiDasarUniversitas, namaDosen!, nipDosen!, mkAjar!, jumSKS);
       }
       else if(pilih == 2){
-        int tunjGaji;
         print('Masukkan Mata Kuliah yang Diajar:');
         String? mkAjar = stdin.readLineSync();
         print('Masukkan jumlah sks yang diajar:');
@@ -97,7 +123,6 @@ void main(List<String> arguments) {
         }while(tunjGaji < 0);
       }
       else if(pilih == 3){
-        int tunjGaji;
         print('Masukkan Mata Kuliah yang Diajar:');
         String? mkAjar = stdin.readLineSync();
         print('Masukkan jumlah sks yang diajar:');
@@ -118,24 +143,61 @@ void main(List<String> arguments) {
       else{
         print('Pilihan hanya 1 hingga 3');
       }
-      stdout.writeln();
-    }
-    else if(pilih == 3){
-
-      stdout.writeln();
-    }
-    else if(pilih == 4){
-      print('=====Data CIVITAS ${dataUniversitas.namaUniversitas}=====');
-      stdout.writeln();
-      print('DOSEN');
+      //PRINT
       print('Nama: ${dataDosen.namaDosen}');
       print('NIP: ${dataDosen.nipDosen}');
       print('MataKuliah: ${dataDosen.mkAjar}');
       print('Jumlah SKS diajar: ${dataDosen.sks} SKS');
       print('Jenis: ${dataDosen.jenis()}');
-      print('Total Gaji yang dimiliki: ${dataDosen.totalGaji()}'); 
-      print('Cek Tunjangan: ${dataDosen.tunjGaji}'); 
+      print('Total Gaji yang dimiliki: Rp. ${dataDosen.totalGaji()}');
       stdout.writeln();
+    }
+    //DATA STAFF
+    else if(pilih == 3){
+      int tunjGaji;
+      int jumCuti;
+      int jumHadir;
+
+      print('Masukkan nama Staff:');
+      String? namaStaff = stdin.readLineSync();
+      print('Masukkan NIS Staff:');
+      String? nisStaff = stdin.readLineSync();
+      print('Masukkan jumlah HADIR Staff:');
+      input = stdin.readLineSync();
+      jumHadir = int.parse(input!);
+      print('Masukkan jumlah Cuti yang digunakan:');
+      input = stdin.readLineSync();
+      jumCuti = int.parse(input!);
+      print('Masukkan tunjangan gaji Staff:');
+      input = stdin.readLineSync();
+      tunjGaji = int.parse(input!);
+      print('Masukkan Kehadiran Staff saat ini [Hadir/Cuti]:');
+      input = stdin.readLineSync();
+      dataStaff.statusStaff(input);
+      dataStaff = Staff(dataUniversitas.namaUniversitas, dataUniversitas.gajiDasarUniversitas, namaStaff!, nisStaff!, jumCuti, tunjGaji, jumHadir);
+      //PRINT
+      stdout.writeln();
+    }
+    else if(pilih == 4){
+      print('=====Data CIVITAS ${dataUniversitas.namaUniversitas}=====');
+      stdout.writeln();
+      // print('DOSEN');
+      // print('Nama: ${dataDosen.namaDosen}');
+      // print('NIP: ${dataDosen.nipDosen}');
+      // print('MataKuliah: ${dataDosen.mkAjar}');
+      // print('Jumlah SKS diajar: ${dataDosen.sks} SKS');
+      // print('Jenis: ${dataDosen.jenis()}');
+      // print('Total Gaji yang dimiliki: Rp. ${dataDosen.totalGaji()}');  
+      // stdout.writeln();
+      // print('MAHASISWA');
+      // print('Nama: ${dataMahasiswa.namaMahasiswa}');
+      // print('NRP: ${dataMahasiswa.nrpMahasiswa}');
+      // print('Jumlah SKS diambil: ${dataMahasiswa.sksMahasiswa} SKS');
+      // print('IPK Mahasiswa: ${dataMahasiswa.hasilIPK()}');
+      // print('Status Mahasiswa: ${dataMahasiswa.status()}');
+      // stdout.writeln();
+      print('STAFF');
+      print('Nama: ${dataStaff.namaStaff}');
     }
     else{
       break;

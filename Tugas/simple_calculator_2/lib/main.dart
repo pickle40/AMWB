@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var inputuser = '';
-  var jawaban = '';
+  double jawaban = 0.0;
 
   final List<String> btns = [
     '+',
@@ -87,10 +87,14 @@ class _MyAppState extends State<MyApp> {
                                   primary: Colors.orange),
                               onPressed: () {
                                 result();
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return halamanJawaban(result: jawaban);
-                                }));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return halamanJawaban(result: jawaban);
+                                    },
+                                  ),
+                                );
                               },
                               child: Text(btns[index],
                                   style: TextStyle(
@@ -134,6 +138,6 @@ class _MyAppState extends State<MyApp> {
     Expression exp = p.parse(finaluserinput);
     ContextModel cm = ContextModel();
     double eval = exp.evaluate(EvaluationType.REAL, cm);
-    jawaban = eval.toString();
+    jawaban = eval;
   }
 }
